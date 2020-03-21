@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restful Tasks CRUD</title>
+</head>
+<body>
+  <h1>{{pageTitle}}</h1>
+
+  <br>
+  <br>
+  <h2>New Task</h2>
+
+  <form (submit)="newTask()">
+    <p>Title: <input type="text" name="title" [(ngModel)]="addTask.title" /></p>
+    <p>Description: <input type="text" name="description" [(ngModel)]="addTask.description" /></p>
+    <input type="submit" value="Create Task" />
+  </form>
+<hr>
+
+  <h1>Task List</h1>
+
+  <div *ngIf="tasks">
+  <div *ngFor="let task of tasks">
+  <h4>{{task.title}}</h4>
+  <p>{{task.description}}</p>
+
+  <p><button (click)="getOneTask(task)">Edit Task</button></p>
+  <p><button (click)="deleteTask(task._id)">Delete Task</button></p>
+</div>
+</div>
+<hr>
+
+  <div *ngIf="editToggle">
+  <h1>Edit a Task</h1>
+  <form (submit)="onEditTask()">
+    <p>Title: <input type="text" name="editTask.title" [(ngModel)]="editTask.title"></p>
+    <p>Description: <input type="text" name="editTask.description" [(ngModel)]="editTask.description"></p>
+    <input type="submit" value="Edit Task">
+</form>
+
+</div>
+
+<hr>
+</body>
+</html>
